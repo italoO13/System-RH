@@ -1,0 +1,13 @@
+
+.Login {
+  width: 100vw;
+  height: 100vh;
+}
+
+.Login form {
+  max-width: 70%;
+}
+
+.login-inputs {
+  margin-bottom: 5px;
+}
