@@ -1,0 +1,11 @@
+.cadastroFuncionario {
+  width: 100%;
+}
+
+.cadastroFuncionario-titulo {
+  margin-top: 20px;
+  font-size: 2rem;
+  text-align: start;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+}

@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Link, Navigate } from "react-router-dom";
+import AppContext from "../../Context/AppContext";
 import firebase from "../../Config/firebase";
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import './Login.css'
@@ -8,11 +9,13 @@ const Login = () =>{
   const [email, setEmail] = useState();
   const [password, setPassword]= useState();
   const [sucess, setSucess] = useState();
+  const {setLoginSave} = useContext(AppContext)
 
   const LoginUser = async () => {
     try {
       await signInWithEmailAndPassword(getAuth(), email,password);
       setSucess(true);
+      setLoginSave({email, login:true})
     } catch (e) {
       setSucess(false);
     }
