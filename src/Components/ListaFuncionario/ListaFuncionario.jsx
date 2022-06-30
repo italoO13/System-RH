@@ -1,14 +1,34 @@
-import React,{ useState,  useContext }  from "react";
-import { useEffect } from "react";
+import React,{ useContext,useState }  from "react";
+import useFirebase from "../../Hooks/useFirebase";
+import { Link } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
+import './ListaFuncionario.css'
 
 const ListaFuncionario= () => {
 
-  const {funcionarios} = useContext(AppContext);
+  const {funcionarios, searchName, setFuncionarios} = useContext(AppContext);
+  const [statusAviso, setStatusAviso] = useState(false)
+  const [id, setId] = useState('');
+  const {deleteDocColection} = useFirebase()
+  const filter= () => {
+    if(searchName !== '') {
+      return funcionarios.filter(({nome}) => nome.toUpperCase().includes(searchName.toUpperCase()))
+    }
+    return funcionarios
+  
+  }
+
+  const removeFuncionario = async() => {
+    await deleteDocColection('funcionario', id);
+    setFuncionarios(funcionarios.filter((func) => func.id !== id))
+    setId('');
+    setStatusAviso(false);
+  }
 
 
   return(
-    <table className="table table-striped table-bordered table-hover table-responsive">
+    <>
+    <table className="table table-striped table-bordered table-hover table-responsive tb-func">
       <thead className="table-secondary">
         <tr>
           <th>
@@ -41,59 +61,63 @@ const ListaFuncionario= () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            Italo Iveldo Luiz
-          </td>
-          <td>
-            Masculino
-          </td>
-          <td>
-            Rua Antonio Carneiro Cezar de menezes, Carpina - PE
-          </td>
-          <td>
-            16/03/1997
-          </td>
-          <td>
-            20/06/2009
-          </td>
-          <td>
-            -
-          </td>
-          <td>
-            Ensino Superior Completo
-          </td>
-          <td>
-            -
-          </td>
-          <td>
-            edit/remove
-          </td>
-        </tr>
-        {funcionarios.map((func) => (
-          <tr>
+        {filter().map((func, index) => (
+          <tr key={index}>
             <td>
               {func.nome}
             </td>
             <td>
-              {func.Gênero}
+              {func.genero}
             </td>
             <td>
-              {func.Endereço}
+              {func.endereco}
             </td>
             <td>
-              {func['Data de Nascimento']}
+              {func.dataNascimento}
             </td>
             <td>
-              {func.nome}
+              {func.dataAdmissao}
             </td>
             <td>
-              {func.nome}
+              {func.dataDesligamento}
             </td>
+            <td>
+              {func.escolaridade}
+            </td>
+            <td>
+              {func.motivoDesligamento}
+            </td>
+            <td>
+            <Link to={`/editfuncionario/${func.id}`}>
+            <i className="fa-solid fa-pen-to-square icon-action"></i>
+            </Link>
+            <button  onClick={()=>{
+              setStatusAviso(true);
+              setId(func.id);
+              }} className="btn icon-action">
+            <i className="fa-solid fa-trash"></i>
+            </button>
+          </td>
           </tr>
+          
         ))}
       </tbody>
     </table>
+    {statusAviso && <div className="avisoExcluir">
+        <h3>Deseja excluir as informações do funcionário ?</h3>
+        <div className="buttons-avisoExcluir">
+          <button onClick={()=>{
+            setStatusAviso(false);
+            setId('');
+            }} className="btn close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <button className="btn check" onClick={removeFuncionario}>
+            <i class="fa-solid fa-check"></i>
+          </button>
+        </div>
+    </div>}
+    </>
   )
 }
 

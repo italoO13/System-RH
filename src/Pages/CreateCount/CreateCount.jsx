@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Link, Navigate } from "react-router-dom";
+import {fire} from '../../Config/firebase'; //teste
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import './CreateCount.css'
 

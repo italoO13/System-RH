@@ -1,9 +1,13 @@
 import React from "react";
+import FormCadFunc from "../../Components/FormCadFunc/FormCadFunc";
+import NavBar from "../../Components/NavBar/NavBar";
 
 const NovoFuncionario= () => {
   return(
     <div>
-      <h1>Novo Funcionario</h1>
+      <NavBar />
+      <h2 className="m-3">Novo Funcionario</h2>
+      <FormCadFunc />
     </div>
   )
 }

@@ -1,0 +1,26 @@
+.icon-action {
+  margin-left: 5px;
+}
+
+.avisoExcluir {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  width: 400px;
+  height: 120px;
+  background-color: rgba(197, 197, 197, 0.9);
+  color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0,0,0.3);
+}
+
+.avisoExcluir .check {
+  color: green;
+  font-size: 22px;
+}
+
+.avisoExcluir .close {
+  color: red;
+  font-size: 22px;
+}

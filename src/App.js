@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home';
 import NovoFuncionario from './Pages/NovoFuncionario/NovoFuncionario';
 import CreateCount from './Pages/CreateCount/CreateCount';
 import DashBoard from './Pages/DashBoard/Dashboard';
+import EditFuncionario from './Pages/EditFuncionario/EditFuncionario';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/DashBoard' element={<DashBoard/>} />
+          <Route path='editfuncionario/:id' element={<EditFuncionario />}/>
           <Route path='/createcount' element={<CreateCount/>}/>
           <Route path='/novofuncionario' element={<NovoFuncionario/>}/>
           <Route path='/Home' element={<Home/>}/>

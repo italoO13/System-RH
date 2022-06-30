@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useEffect, useContext} from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import CadastroFuncionario from "../../Components/CadastroFuncionario/CadastroFuncionario";
+import AppContext from "../../Context/AppContext";
 import './Home.css';
 
 const Home= () => {
+  const {getDbFuncionario} = useContext(AppContext)
 
-
+  useEffect(()=>{
+    const updateFunc = async() => {
+      await getDbFuncionario()
+    }
+    updateFunc();
+},[]);
+  
   return(
     <div>
       <NavBar />

@@ -1,7 +1,6 @@
 import React, {useState, useContext} from "react";
 import { Link, Navigate } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
-import firebase from "../../Config/firebase";
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import './Login.css'
 
