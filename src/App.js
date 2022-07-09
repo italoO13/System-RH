@@ -7,6 +7,7 @@ import NovoFuncionario from './Pages/NovoFuncionario/NovoFuncionario';
 import CreateCount from './Pages/CreateCount/CreateCount';
 import DashBoard from './Pages/DashBoard/Dashboard';
 import EditFuncionario from './Pages/EditFuncionario/EditFuncionario';
+import ConfigCargoFunc from './Pages/ConfigCargoFunc/ConfigCargoFunc';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/createcount' element={<CreateCount/>}/>
           <Route path='/novofuncionario' element={<NovoFuncionario/>}/>
           <Route path='/Home' element={<Home/>}/>
+          <Route path='/config' element={<ConfigCargoFunc/>}/>
           <Route path='/resetpassword' element={<ResetPassword/>}/>
           <Route path='/' element={<Login/>}/>
         </Routes>
