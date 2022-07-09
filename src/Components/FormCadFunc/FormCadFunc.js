@@ -55,7 +55,7 @@ const FormCadFunc = ({id}) => {
 
   return(
     <form className="formCadFunc mt-3">
-
+        <h4>Informações Pessoais</h4>
         <div class="form-floating floatin-form mb-3">
           <input onChange={handleInput} value={cadastro.nome} name="nome" type="text" className="form-control" id="floatingInput" placeholder="nome"/>
           <label htmlFor="floatingInput" className="form-label">Nome</label>
@@ -79,8 +79,20 @@ const FormCadFunc = ({id}) => {
             <option value="Masculino">Masculino</option>
             <option value="Feminino">Feminino</option>
         </select>
-
         </div>
+
+        <select onChange={handleInput} value={cadastro.escolaridade} name="escolaridade" class="form-select mb-3" aria-label="Default select example">
+            <option selected>Nível de Escolaridade</option>
+            <option value="Sem instrução">Sem instrução</option>
+            <option value="Ensino Fundamental incompleto">Ensino Fundamental incompleto</option>
+            <option value="Ensino Fundamental completo">Ensino Fundamental completo</option>
+            <option value="Ensino Médio incompleto">Ensino Médio incompleto</option>
+            <option value="Ensino Médio completo">Ensino Médio completo</option>
+            <option value="Ensino Superior incompleto">Ensino Superior incompleto</option>
+            <option value="Ensino Superior completo">Ensino Superior completo</option>
+        </select>
+
+        <h4>Cargo</h4>
         <div className="d-flex justify-content-between">
           <div class="mb-3">
             <label htmlFor="exampleInputEmail1" class="form-label">Data de Admissão</label>
@@ -95,6 +107,16 @@ const FormCadFunc = ({id}) => {
           </div>
         </div>
 
+
+        <select onChange={handleInput} value={cadastro.motivoDesligamento} name="motivoDesligamento" class="form-select mb-3" aria-label="Default select example">
+            <option selected >Motivo do Desligamento</option>
+            <option value="Baixo salário">Baixo salário</option>
+            <option value="Problemas com a gestão">Problemas com a gestão</option>
+            <option value="Baixo desempenho">Baixo desempenho</option>
+            <option value="Migração de carreira">Migração de carreira</option>
+            <option value="Justa causa">Justa causa</option>
+        </select>
+
         <select onChange={handleInput} value={cadastro.escolaridade} name="escolaridade" class="form-select mb-3" aria-label="Default select example">
             <option selected>Nível de Escolaridade</option>
             <option value="Sem instrução">Sem instrução</option>
@@ -106,14 +128,9 @@ const FormCadFunc = ({id}) => {
             <option value="Ensino Superior completo">Ensino Superior completo</option>
         </select>
 
-        <select onChange={handleInput} value={cadastro.motivoDesligamento} name="motivoDesligamento" class="form-select mb-3" aria-label="Default select example">
-            <option selected >Motivo do Desligamento</option>
-            <option value="Baixo salário">Baixo salário</option>
-            <option value="Problemas com a gestão">Problemas com a gestão</option>
-            <option value="Baixo desempenho">Baixo desempenho</option>
-            <option value="Migração de carreira">Migração de carreira</option>
-            <option value="Justa causa">Justa causa</option>
-        </select>
+
+
+
         {message && <p className="alert alert-danger">{message}</p>}
         <div className="container-btn-card-save">
           <button type="button" className="btn-cad btn-secondary mx-3" onClick={()=>{

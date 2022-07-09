@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
-import ListaFuncionario from "../ListaFuncionario/ListaFuncionario";
+import ListaFuncionario from "../../Components/ListaFuncionario/ListaFuncionario";
 import './CadastroFuncionario.css';
 
 const CadastroFuncionario= () => {

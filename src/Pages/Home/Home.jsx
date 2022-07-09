@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from "react";
 import NavBar from "../../Components/NavBar/NavBar";
-import CadastroFuncionario from "../../Components/CadastroFuncionario/CadastroFuncionario";
+import CadastroFuncionario from "../CadastroFuncionario/CadastroFuncionario";
 import AppContext from "../../Context/AppContext";
 import './Home.css';
 
