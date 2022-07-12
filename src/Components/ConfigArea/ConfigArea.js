@@ -1,15 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import AppContext from "../../Context/AppContext";
 import useFirebase from "../../Hooks/useFirebase";
-import NavBar from "../../Components/NavBar/NavBar";
 import useCargoFunc from "../../Hooks/useCargoFunc";
 
-const ConfigCargoFunc = () => {
-  const { getDbAreas, nameAreas, areas } = useContext(AppContext)
-  
-  const {addDocColection, deleteDocColection} = useFirebase()
+const ConfigArea = () =>{
+
+  const { getDbAreas, nameAreas, areas } = useContext(AppContext);
+  const {addDocColection, deleteDocColection } = useFirebase();
   const [newArea, setNewArea] = useState('')
-  const {returnIdArea} = useCargoFunc();
+  const {returnIdArea } = useCargoFunc();
 
   useEffect(()=>{
     getDbAreas();
@@ -24,17 +23,15 @@ const ConfigCargoFunc = () => {
 
   return(
     <div>
-      <NavBar />
-      <h1>Configuração</h1>
-
+      <h1>Area</h1>
       <div>
         <label>
           Área
           <input onChange={({target}) => setNewArea(target.value)} value={newArea} />
           <button onClick={async () => {
-            const dt = {[newArea]:{}}
-            addDocColection(dt, 'area')
-            getDbAreas();
+            const dt = {[newArea]:[]}
+            await addDocColection(dt, 'area')
+            await getDbAreas();
 
           }}>Add</button>
         </label>
@@ -42,19 +39,16 @@ const ConfigCargoFunc = () => {
           {nameAreas && nameAreas.map((area, index) => (
             <li key={index}>
               <span>{area}</span>
-              <button name={area} onClick={deleteArea}>Delete</button>
+              <button type="button" name={area} onClick={deleteArea}>Delete</button>
             </li>
           ))}
         </ul>
       </div>
-      <div>
-          
-
-      </div>
-
     </div>
 
   )
+
 }
 
-export default ConfigCargoFunc
+
+export default ConfigArea;
