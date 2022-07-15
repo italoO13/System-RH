@@ -54,7 +54,6 @@ const ConfigFunc = () => {
             </label>
 
             <ul>
-              {console.log(functions)}
               {functions && functions.map((func,index) => (
                 <li key={index}>
                   <span>{func}</span>
