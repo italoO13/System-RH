@@ -5,7 +5,7 @@ import useCargoFunc from "../../Hooks/useCargoFunc";
 
 const ConfigFunc = () => {
 
-  const { getDbAreas, nameAreas, areas } = useContext(AppContext);
+  const { getDbAreas, nameAreas, areas, loginSave } = useContext(AppContext);
   const [functions, setFuncions] = useState([]);
   const {updateDocColection} = useFirebase();
   const [filterArea, setFilterArea] = useState('');
@@ -21,7 +21,7 @@ const ConfigFunc = () => {
     setNewAddFunc('')
     const objArea = returnFunc(areas, filterArea, false)
     objArea[filterArea].push(newAddFunc)
-    await updateDocColection('area', objArea.id, {[filterArea]:objArea[filterArea]})
+    await updateDocColection('area',loginSave.id, objArea.id, {[filterArea]:objArea[filterArea]})
     setFuncions(returnFunc(areas, filterArea, true))
   }
 
@@ -29,7 +29,7 @@ const ConfigFunc = () => {
     const objArea = returnFunc(areas, filterArea, false)
     const {name} = e.target;
     objArea[filterArea] = objArea[filterArea].filter((func) => func !== name )
-    await updateDocColection('area', objArea.id, {[filterArea]:objArea[filterArea]})
+    await updateDocColection('area', loginSave.id, objArea.id, {[filterArea]:objArea[filterArea]})
     setFuncions(returnFunc(areas, filterArea, true))
   }
 

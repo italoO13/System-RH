@@ -6,13 +6,13 @@ import useCargoFunc from "../../Hooks/useCargoFunc";
 const ConfigArea = () =>{
 
   const { getDbAreas, nameAreas, areas, loginSave, setLoginSave } = useContext(AppContext);
-  const {addDocFire, deleteDocColection, addSubCollection } = useFirebase();
+  const {addDocFire, deleteDocColection } = useFirebase();
   const [newArea, setNewArea] = useState('')
   const {returnIdArea } = useCargoFunc();
 
   useEffect(()=>{
     getDbAreas();
-    setLoginSave({email:'italoiveldoluiz@gmail.com', id:'JEAklp1ZbvUgHbmiO5k0N5fpLHb2', success:true})
+    // setLoginSave({email:'italoiveldoluiz@gmail.com', id:'JEAklp1ZbvUgHbmiO5k0N5fpLHb2', success:true})
   }, [])
 
   const deleteArea = async({target}) => {

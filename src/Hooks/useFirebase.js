@@ -33,6 +33,15 @@ const useFirebase = () => {
     })
     return bdFuncTotal;
   }
+
+  const updateDocColection = async(subCollect, idLogin, idDoc, data ) => {
+    const colRefUpdate = createRef(idLogin, subCollect);
+    const refRegist = doc(colRefUpdate, idDoc);
+    await updateDoc(refRegist, {
+        ...data
+    })
+  }
+
   const filterIdColection = async(id, inputColection) => {
     let func = {};
     const querySnapshot = await getDocs(collection(db, inputColection));
@@ -47,13 +56,6 @@ const useFirebase = () => {
 
   const addDocColection = async(datecad, inputColection) => {
     await addDoc(collection(db, inputColection), {...datecad});
-  }
-
-  const updateDocColection = async(inputColection, id, cadastro ) => {
-    const ref = doc(db,inputColection, id);
-    await updateDoc(ref, {
-        ...cadastro
-    })
   }
 
   const deleteDocColection = async(subCollect, idLogin, idDoc) => {
