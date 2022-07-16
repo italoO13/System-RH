@@ -7,16 +7,16 @@ import './Login.css'
 const Login = () =>{ 
   const [email, setEmail] = useState();
   const [password, setPassword]= useState();
-  const [sucess, setSucess] = useState();
-  const {setLoginSave} = useContext(AppContext)
+  const {setLoginSave, loginSave} = useContext(AppContext)
+
 
   const LoginUser = async () => {
     try {
-      await signInWithEmailAndPassword(getAuth(), email,password);
-      setSucess(true);
-      setLoginSave({email, login:true})
+      const {user} = await signInWithEmailAndPassword(getAuth(), email,password);
+      setLoginSave({email, success:true, id: user.uid})
+      console.log(loginSave)
     } catch (e) {
-      setSucess(false);
+      setLoginSave({...loginSave, success:false});
     }
   }
 
@@ -35,10 +35,10 @@ const Login = () =>{
       <label htmlFor="floatingPassword">Password</label>
     </div>
     <button className="w-100 btn btn-lg btn-primary" type="button" onClick={LoginUser}>Entrar</button>
-    {sucess === false && <div className="alert alert-danger mt-2" role='alert'>
+    {loginSave.success === false && <div className="alert alert-danger mt-2" role='alert'>
       Email ou senha inválidos !
     </div>}
-    {sucess &&
+    {loginSave.success === true &&
       <Navigate to="/home"/>
     }
     <div className="d-flex mt-4 justify-content-between">

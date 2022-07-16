@@ -6,7 +6,8 @@ import useCargoFunc from "../Hooks/useCargoFunc";
 const Provider=({ children }) => {
   const [loginSave, setLoginSave] = useState({
     email:'',
-    login:false,
+    success:'',
+    id:'',
   });
   const {readColectionFirebase}= useFirebase()
   const {returnAreas} =  useCargoFunc()
@@ -21,7 +22,7 @@ const Provider=({ children }) => {
   }
 
   const getDbAreas = async() => {
-    const dados = await readColectionFirebase('area');
+    const dados = await readColectionFirebase(loginSave.id, 'area');
     setAreas(dados);
     setNameAreas(returnAreas(dados))
   }

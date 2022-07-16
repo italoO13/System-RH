@@ -2,9 +2,30 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase
 import { db } from "../Config/firebase";
 
 const useFirebase = () => {
-  const readColectionFirebase = async(inputColection) => {
+
+  
+  const createRef = (id, subCollect) => {
+    const ref =  doc(db, 'usuarios', id)
+    return collection(ref, subCollect);
+  }
+
+  const addSubCollection = async(id) => {
+    const colRefArea = createRef(id, 'area');
+    const colRefFunc = createRef(id, 'funcionarios');
+    await addDoc(colRefArea, {
+    });
+    await addDoc(colRefFunc, {
+    });
+  }
+  const addDocFire = async(id, subCollect, data) =>{
+    const colRefAdd = createRef(id, subCollect);
+    await addDoc(colRefAdd, data )
+  }
+
+  const readColectionFirebase = async(id, subCollect) => {
+    const colRefRead = createRef(id, subCollect);
     let bdFuncTotal = []
-    const querySnapshot = await getDocs(collection(db, inputColection));
+    const querySnapshot = await getDocs(colRefRead);
     querySnapshot.forEach((doc)=> {
       let dados = doc.data()
       // setFuncionarios([...funcionarios, {id:doc.id, ...dados}])
@@ -35,12 +56,13 @@ const useFirebase = () => {
     })
   }
 
-  const deleteDocColection = async(inputColection, id) => {
-    await deleteDoc(doc(db, inputColection, id));
+  const deleteDocColection = async(subCollect, idLogin, idDoc) => {
+    const colRefDel = createRef(idLogin, subCollect);
+    await deleteDoc(doc(colRefDel, idDoc));
   }
 
   return {readColectionFirebase, filterIdColection, 
-    addDocColection, updateDocColection, deleteDocColection }
+    addDocColection, updateDocColection, deleteDocColection, addSubCollection, addDocFire }
 }
 
 export default useFirebase;

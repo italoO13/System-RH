@@ -21,6 +21,9 @@ const NavBar= () => {
             <li className="nav-item">
               <Link class="nav-link" aria-current="page"  to='/'>Sair</Link>
             </li>
+            <li className="nav-item">
+              <Link class="nav-link" aria-current="page"  to='/config'>Config</Link>
+            </li>
           </ul>
         </div>
       </div>

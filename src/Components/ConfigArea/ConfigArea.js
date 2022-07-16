@@ -5,19 +5,19 @@ import useCargoFunc from "../../Hooks/useCargoFunc";
 
 const ConfigArea = () =>{
 
-  const { getDbAreas, nameAreas, areas } = useContext(AppContext);
-  const {addDocColection, deleteDocColection } = useFirebase();
+  const { getDbAreas, nameAreas, areas, loginSave, setLoginSave } = useContext(AppContext);
+  const {addDocFire, deleteDocColection, addSubCollection } = useFirebase();
   const [newArea, setNewArea] = useState('')
   const {returnIdArea } = useCargoFunc();
 
   useEffect(()=>{
     getDbAreas();
-
+    setLoginSave({email:'italoiveldoluiz@gmail.com', id:'JEAklp1ZbvUgHbmiO5k0N5fpLHb2', success:true})
   }, [])
 
   const deleteArea = async({target}) => {
      const id =returnIdArea(areas, target.name);
-     await deleteDocColection('area', id)
+     await deleteDocColection('area',loginSave.id, id)
      await getDbAreas();
   }
 
@@ -30,7 +30,7 @@ const ConfigArea = () =>{
           <input onChange={({target}) => setNewArea(target.value)} value={newArea} />
           <button onClick={async () => {
             const dt = {[newArea]:[]}
-            await addDocColection(dt, 'area')
+            await addDocFire(loginSave.id, 'area', dt)
             await getDbAreas();
 
           }}>Add</button>

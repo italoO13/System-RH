@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import { Link, Navigate } from "react-router-dom";
 import {fire} from '../../Config/firebase'; //teste
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import useFirebase from "../../Hooks/useFirebase";
 import './CreateCount.css'
 
 
-const CreateCount = () =>{ 
+const CreateCount = () =>{
   const [email, setEmail] = useState();
   const [password, setPassword]= useState('');
   const [menssage, setMenssage] = useState('');
+  const {addDocColection, addSubCollection} = useFirebase();
 
   const validateEmail = () => {
     const re = /\S+@\S+\.\S+/;
@@ -31,9 +33,10 @@ const CreateCount = () =>{
     try {
       validateEmail();
       validatePassword();
-      setMenssage('success')
       await createUserWithEmailAndPassword(getAuth(), email, password)
-
+      const {user} = await signInWithEmailAndPassword(getAuth(), email,password);
+      await addSubCollection(user.uid)
+      setMenssage('success')
     }catch(e) {
       setMenssage(e.message)
     }
