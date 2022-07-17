@@ -7,6 +7,7 @@ import './FormCadFunc.css';
 
 const FormCadFunc = ({id}) => {
   const navigate = useNavigate()
+  const [validation, setValidation] = useState('');
   const {nameAreas, getDbAreas, areas, loginSave} = useContext(AppContext)
   const {returnFunc} = useCargoFunc();
   const {addDocFire, filterIdColection, updateDocColection} = useFirebase();
@@ -31,8 +32,23 @@ const FormCadFunc = ({id}) => {
     setCadastro({...cadastro, [target.name]:target.value});
   }
 
+
+  const registValidation = () => {
+    const {nome, endereco, dataNascimento, 
+      dataAdmissao, genero, escolaridade, area, funcao, salario} = cadastro;
+    if(
+      nome === '' || endereco === '' || dataNascimento === '' ||
+      dataAdmissao === '' || genero === '' || escolaridade === '' ||
+      area === '' || funcao === '' || salario === ''
+    ) {
+      throw setMessage('Um dos campos : nome, endereco, nascimento, Admissão , genero , escolaridade, area ou função não foi preenchido');
+    }
+  }
+
+
   const submitCadatro = async() => {
     try{
+      registValidation();
       await addDocFire(loginSave.id, 'funcionarios' ,cadastro)
       return navigate('/home')
     } catch (e) {
