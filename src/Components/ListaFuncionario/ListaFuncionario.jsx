@@ -2,6 +2,7 @@ import React,{ useContext,useState }  from "react";
 import useFirebase from "../../Hooks/useFirebase";
 import { Link } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
+import SweetAlert from "react-bootstrap-sweetalert";
 import './ListaFuncionario.css'
 
 const ListaFuncionario= () => {
@@ -121,20 +122,25 @@ const ListaFuncionario= () => {
         ))}
       </tbody>
     </table>
-    {statusAviso && <div className="avisoExcluir">
-        <h3>Deseja excluir as informações do funcionário ?</h3>
-        <div className="buttons-avisoExcluir">
-          <button onClick={()=>{
-            setStatusAviso(false);
-            setId('');
-            }} className="btn close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <button className="btn check" onClick={removeFuncionario}>
-            <i class="fa-solid fa-check"></i>
-          </button>
-        </div>
-    </div>}
+    {
+    statusAviso && 
+    <SweetAlert
+    warning
+    showCancel
+    confirmBtnText="Sim"
+    confirmBtnBsStyle="danger"
+    title="Excluir"
+    onConfirm={() => {
+      removeFuncionario();
+      setStatusAviso(false);
+      setId('');
+    }}
+    onCancel={() => setStatusAviso(false)}
+    focusCancelBtn
+  >
+    Deseja apagar o registro do funcionário ?
+  </SweetAlert>
+    }
     </>
   )
 }
