@@ -42,12 +42,13 @@ const useFirebase = () => {
     })
   }
 
-  const filterIdColection = async(id, inputColection) => {
+  const filterIdColection = async(subCollect, idLogin, idDoc) => {
+    const colRefId =  createRef(idLogin, subCollect)
     let func = {};
-    const querySnapshot = await getDocs(collection(db, inputColection));
+    const querySnapshot = await getDocs(colRefId);
     querySnapshot.forEach((doc) => {
       let dados = doc.data();
-      if(`${doc.id}` === id) {
+      if(`${doc.id}` === idDoc) {
         func = {id:doc.id, ...dados};
       }
     })

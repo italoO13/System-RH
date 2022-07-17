@@ -17,7 +17,7 @@ const Provider=({ children }) => {
   const [nameAreas, setNameAreas] = useState([])
 
   const getDbFuncionario = async() => {
-    const dados = await readColectionFirebase('funcionario')
+    const dados = await readColectionFirebase(loginSave.id, 'funcionarios')
     setFuncionarios(dados)
   }
 

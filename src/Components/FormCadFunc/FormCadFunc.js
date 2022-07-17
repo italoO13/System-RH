@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
+import AppContext from "../../Context/AppContext";
+import useCargoFunc from "../../Hooks/useCargoFunc";
 import useFirebase from "../../Hooks/useFirebase";
 import './FormCadFunc.css';
 
 const FormCadFunc = ({id}) => {
   const navigate = useNavigate()
-  const {addDocColection, filterIdColection, updateDocColection} = useFirebase();
+  const {nameAreas, getDbAreas, areas, loginSave} = useContext(AppContext)
+  const {returnFunc} = useCargoFunc();
+  const {addDocFire, filterIdColection, updateDocColection} = useFirebase();
   const [cadastro, setCadastro] = useState({
     nome:'',
     endereco:'',
@@ -15,7 +19,11 @@ const FormCadFunc = ({id}) => {
     genero:'',
     motivoDesligamento:'',
     escolaridade:'',
+    area: '',
+    funcao: '',
+    salario:0,
   });
+  const [functions, setFunctions] = useState([]);
 
   const [message, setMessage] = useState('');
 
@@ -25,7 +33,7 @@ const FormCadFunc = ({id}) => {
 
   const submitCadatro = async() => {
     try{
-      await addDocColection(cadastro, 'funcionario')
+      await addDocFire(loginSave.id, 'funcionarios' ,cadastro)
       return navigate('/home')
     } catch (e) {
       setMessage(e.message)
@@ -34,7 +42,7 @@ const FormCadFunc = ({id}) => {
 
   const updateCadastro  = async() => {
     try{
-      await updateDocColection('funcionario', id, cadastro)
+      await updateDocColection('funcionarios',loginSave.id, id, cadastro)
       return navigate('/home')
     } catch (e) {
       setMessage(e.message)
@@ -42,16 +50,27 @@ const FormCadFunc = ({id}) => {
   }
 
   useEffect(()=>{
+    getDbAreas();
     if(!id) {
       return;
     }
     const getFuncFirebase = async() => {
-      const doc = await filterIdColection(id, 'funcionario');
+      const doc = await filterIdColection('funcionarios',loginSave.id, id);
       setCadastro({...cadastro, ...doc})
     }
     getFuncFirebase();
     
   },[])
+
+  useEffect(()=>{
+    if(cadastro.area.length ===0) {
+      return ;
+    }
+    const renderFunctions = () => {
+      setFunctions(returnFunc(areas, cadastro.area, true))
+    }
+    renderFunctions();
+  }, [cadastro.area])
 
   return(
     <form className="formCadFunc mt-3">
@@ -117,18 +136,33 @@ const FormCadFunc = ({id}) => {
             <option value="Justa causa">Justa causa</option>
         </select>
 
-        <select onChange={handleInput} value={cadastro.escolaridade} name="escolaridade" class="form-select mb-3" aria-label="Default select example">
-            <option selected>Nível de Escolaridade</option>
-            <option value="Sem instrução">Sem instrução</option>
-            <option value="Ensino Fundamental incompleto">Ensino Fundamental incompleto</option>
-            <option value="Ensino Fundamental completo">Ensino Fundamental completo</option>
-            <option value="Ensino Médio incompleto">Ensino Médio incompleto</option>
-            <option value="Ensino Médio completo">Ensino Médio completo</option>
-            <option value="Ensino Superior incompleto">Ensino Superior incompleto</option>
-            <option value="Ensino Superior completo">Ensino Superior completo</option>
-        </select>
 
+        <label>
+          Área
+          <select onChange={handleInput} value={cadastro.area} name="area" class="form-select mb-3" aria-label="Default select example">
+              <option selected>Selecione a Area</option>
+              {nameAreas.length > 0 ? (
+                nameAreas.map((area, index) => (
+                  <option value={area} key={index}>{area}</option>
+                ))):
+                  <option selected>Cadastre uma Area da sua Empresa</option>
+              }
+          </select>
+        </label>
 
+        <label>
+          Função
+          <select onChange={handleInput} value={cadastro.funcao} name="funcao" class="form-select mb-3" aria-label="Default select example">
+              <option selected>Selecione a Função</option>
+              {functions && functions.map((func, index) => (
+                <option value={func} key={index}>{func}</option>
+              ))}
+          </select>
+        </label>
+        <label>
+          Salário Bruto
+          <input name="salario" type="number" onChange={handleInput} value={cadastro.salario}></input>
+        </label>
 
 
         {message && <p className="alert alert-danger">{message}</p>}

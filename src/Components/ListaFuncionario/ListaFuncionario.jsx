@@ -6,7 +6,7 @@ import './ListaFuncionario.css'
 
 const ListaFuncionario= () => {
 
-  const {funcionarios, searchName, setFuncionarios} = useContext(AppContext);
+  const {funcionarios, searchName, setFuncionarios, loginSave} = useContext(AppContext);
   const [statusAviso, setStatusAviso] = useState(false)
   const [id, setId] = useState('');
   const {deleteDocColection} = useFirebase()
@@ -19,7 +19,7 @@ const ListaFuncionario= () => {
   }
 
   const removeFuncionario = async() => {
-    await deleteDocColection('funcionario', id);
+    await deleteDocColection('funcionarios',loginSave.id, id);
     setFuncionarios(funcionarios.filter((func) => func.id !== id))
     setId('');
     setStatusAviso(false);
