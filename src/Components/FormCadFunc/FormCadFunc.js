@@ -3,11 +3,12 @@ import {useNavigate} from 'react-router-dom';
 import AppContext from "../../Context/AppContext";
 import useCargoFunc from "../../Hooks/useCargoFunc";
 import useFirebase from "../../Hooks/useFirebase";
+import SweetAlert from "react-bootstrap-sweetalert";
 import './FormCadFunc.css';
 
 const FormCadFunc = ({id}) => {
   const navigate = useNavigate()
-  const [validation, setValidation] = useState('');
+  const [warnSucess, setWarnSucess] = useState(false);
   const {nameAreas, getDbAreas, areas, loginSave} = useContext(AppContext)
   const {returnFunc} = useCargoFunc();
   const {addDocFire, filterIdColection, updateDocColection} = useFirebase();
@@ -32,7 +33,6 @@ const FormCadFunc = ({id}) => {
     setCadastro({...cadastro, [target.name]:target.value});
   }
 
-
   const registValidation = () => {
     const {nome, endereco, dataNascimento, 
       dataAdmissao, genero, escolaridade, area, funcao, salario} = cadastro;
@@ -49,17 +49,18 @@ const FormCadFunc = ({id}) => {
   const submitCadatro = async() => {
     try{
       registValidation();
-      await addDocFire(loginSave.id, 'funcionarios' ,cadastro)
-      return navigate('/home')
+      await addDocFire(loginSave.id, 'funcionarios' ,cadastro);
+      return setWarnSucess(true);
     } catch (e) {
-      setMessage(e.message)
+      setMessage(e.message);
     }
   }
 
   const updateCadastro  = async() => {
     try{
-      await updateDocColection('funcionarios',loginSave.id, id, cadastro)
-      return navigate('/home')
+      registValidation();
+      await updateDocColection('funcionarios',loginSave.id, id, cadastro);
+      return setWarnSucess(true);
     } catch (e) {
       setMessage(e.message)
     }
@@ -87,6 +88,14 @@ const FormCadFunc = ({id}) => {
     }
     renderFunctions();
   }, [cadastro.area])
+
+  useEffect(()=>{
+    if(!warnSucess) {
+      return 
+    }
+    setTimeout(() => navigate('/home'), 2000)
+
+  }, [warnSucess])
 
   return(
     <form className="formCadFunc mt-3">
@@ -182,6 +191,13 @@ const FormCadFunc = ({id}) => {
 
 
         {message && <p className="alert alert-danger">{message}</p>}
+        {warnSucess && 
+        <SweetAlert success title="Good job!" onConfirm={() => navigate('/home')} onCancel={() => navigate('/home')}>
+            Operação feita com sucesso.
+        </SweetAlert>
+        }
+
+
         <div className="container-btn-card-save">
           <button type="button" className="btn-cad btn-secondary mx-3" onClick={()=>{
             navigate('/home')
