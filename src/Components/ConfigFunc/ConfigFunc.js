@@ -7,6 +7,7 @@ const ConfigFunc = () => {
 
   const { getDbAreas, nameAreas, areas, loginSave } = useContext(AppContext);
   const [functions, setFuncions] = useState([]);
+  const [message, setMessage] = useState('');
   const {updateDocColection} = useFirebase();
   const [filterArea, setFilterArea] = useState('');
   const [newAddFunc, setNewAddFunc] = useState('')
@@ -17,12 +18,27 @@ const ConfigFunc = () => {
 
   }, [])
 
+  const validateFunc = () => {
+    return functions.map((func) => {
+      if(func.toLowerCase() === newAddFunc.toLocaleLowerCase()) {
+        throw setMessage('Não é possível cadastrar a mesma Função da empresa')
+      }
+      return false;
+    } )
+  }
+
   const addFunctions = async() => {
-    setNewAddFunc('')
-    const objArea = returnFunc(areas, filterArea, false)
-    objArea[filterArea].push(newAddFunc)
-    await updateDocColection('area',loginSave.id, objArea.id, {[filterArea]:objArea[filterArea]})
-    setFuncions(returnFunc(areas, filterArea, true))
+    try {
+      setNewAddFunc('');
+      setMessage('');
+      validateFunc();
+      const objArea = returnFunc(areas, filterArea, false)
+      objArea[filterArea].push(newAddFunc)
+      await updateDocColection('area',loginSave.id, objArea.id, {[filterArea]:objArea[filterArea]})
+      setFuncions(returnFunc(areas, filterArea, true))
+    } catch (e) {
+      setMessage(e.message)
+    }
   }
 
   const removeFunctions = async(e) => {
@@ -52,7 +68,7 @@ const ConfigFunc = () => {
               <input type="text" value={newAddFunc} onChange={({target})=> setNewAddFunc(target.value)} />
               <button type="button" onClick={addFunctions}>Add</button>
             </label>
-
+            {message && <p className="alert alert-danger">{message}</p>}
             <ul>
               {functions && functions.map((func,index) => (
                 <li key={index}>
