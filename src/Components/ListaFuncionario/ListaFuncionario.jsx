@@ -56,6 +56,15 @@ const ListaFuncionario= () => {
             Motivo do desligamento
           </th>
           <th>
+            Area
+          </th>
+          <th>
+            Função
+          </th>
+          <th>
+            Salário
+          </th>
+          <th>
             Ações
           </th>
         </tr>
@@ -86,6 +95,15 @@ const ListaFuncionario= () => {
             </td>
             <td>
               {func.motivoDesligamento}
+            </td>
+            <td>
+              {func.area}
+            </td>
+            <td>
+              {func.funcao}
+            </td>
+            <td>
+              {func.salario}
             </td>
             <td>
             <Link to={`/editfuncionario/${func.id}`}>
