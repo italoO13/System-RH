@@ -125,6 +125,36 @@ const DashBoard= () => {
   //   )
   // };
 
+  const graphReasonDimissal = () => {
+
+    const funcDemitidos = funcionarios
+      .filter((func) => func.dataDesligamento !== '' && func.motivoDesligamento !== '');
+    const values = _.groupBy(funcDemitidos, (func) => {
+      return func.motivoDesligamento;
+    });
+
+    const data = _.map(values, (func, key) => {
+      return [
+        key,
+        values[key].length]
+    })
+    const options = {
+      title: 'Motivos de desligamentos',
+      chartArea: { width:'50%'},
+    }
+
+    return (
+      <Chart 
+        chartType ="BarChart"
+        width="100%"
+        height ="400px"
+        data={[['Motivo Demissão', 'Qnt'], ...data]}
+        options={options}
+      />
+    )
+  }
+
+
   return(
     <div >
       <NavBar />
@@ -135,6 +165,7 @@ const DashBoard= () => {
       {statusRender && graphSalary()}
       {/* {statusRender && graphEmployees()} */}
       </div>
+      {statusRender && graphReasonDimissal()}
 
     </div>
   )
