@@ -75,6 +75,7 @@ const DashBoard= () => {
       .filter((func) => func.dataDesligamento === '').length;
     const funcionariosDesligados = funcionarios
       .filter((func) => func.dataDesligamento !== '').length;
+    const turnover = (totalFuncionario/funcionariosDesligados) *100;
     return(
       <div className="d-flex justify-content-center">
         <div>
@@ -85,45 +86,34 @@ const DashBoard= () => {
           <h1>{funcionariosDesligados}</h1>
           <p>Total de Demissões</p>
         </div>
+        <div>
+          <h1>{turnover} %</h1>
+          <p>Turnover Geral</p>
+        </div>
       </div>
     );
   };
 
-  // const graphEmployees = () =>{
-  //   const Admissao = funcionarios.map((func) => {
-  //     const ano = new Date(func.dataAdmissao).getFullYear();
-  //     const mes = new Date(func.dataAdmissao).toLocaleString('pt-br', {month: "long"});
-  //     return [ano, mes, 1 , 0];
-  //   });
-  //   const Demissao = funcionarios.filter((obj) => obj.dataDesligamento !== '').map((func) => {
-  //       const ano = new Date(func.dataDesligamento).getFullYear();
-  //       const mes = new Date(func.dataDesligamento).toLocaleString('pt-br', {month: "long"});
-  //       return [ano, mes, 0, 1];
-  //   });
+  const graphEmployees = () =>{
 
-  //  const v = funcionarios.map((func) => {
-  //   const {dataAdmissao, dataDesligamento} = func;
-  //   if(dataAdmissao !='' && dataDesligamento)
-  //  })
+   const v = funcionarios.reduce((accTotal,func) => {
 
-  //   const data = [...Admissao, ...Demissao]
-  //   const options = {
-  //     isStacked: true,
-  //     height: 300,
-  //     legend: { position: "top", maxLines: 3 },
-  //   }
-  //   console.log(funcionarios)
-  //   // [ano, mes,admissao,demissao]
-  //   return (
-  //     <Chart
-  //     chartType="AreaChart"
-  //     width="100%"
-  //     height="400px"
-  //     data={[['ano', 'mes', 'Admissão', 'Demissão'], ...data]}
-  //     options={options}
-  //   />
-  //   )
-  // };
+    const {dataAdmissao, dataDesligamento} = func;
+    const acumuladoAd = accTotal.reduce((acc, arr) => acc + arr[1], 0) || 0
+    console.log(acumuladoAd)
+    const acumuladoDe = accTotal.reduce((acc, arr) => acc + arr[2], 0) || 0
+    if(dataAdmissao !=='') {
+      return [...accTotal, [new Date(dataAdmissao), acumuladoAd + 1, acumuladoDe]]
+    }
+    if(dataDesligamento !== '') {
+      return [...accTotal, [new Date(dataDesligamento), acumuladoAd, acumuladoDe + 1]]
+    }
+    return accTotal;
+  
+   }, [])
+
+    console.log(v)
+  };
 
   const graphReasonDimissal = () => {
 
@@ -163,7 +153,7 @@ const DashBoard= () => {
       <div className="d-flex">
       {statusRender && graphGender()}
       {statusRender && graphSalary()}
-      {/* {statusRender && graphEmployees()} */}
+      {statusRender && graphEmployees()}
       </div>
       {statusRender && graphReasonDimissal()}
 
