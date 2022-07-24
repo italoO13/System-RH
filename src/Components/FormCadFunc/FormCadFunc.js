@@ -43,6 +43,13 @@ const FormCadFunc = ({id}) => {
     ) {
       throw setMessage('Um dos campos : nome, endereco, nascimento, Admissão , genero , escolaridade, area ou função não foi preenchido');
     }
+
+    if(
+      genero === 'Gênero' || escolaridade === 'Nível de Escolaridade' ||
+      area === 'Selecione a Area' || funcao === 'Selecione a Função' || salario === 0
+    ) {
+      throw setMessage('Não é possível utilizar os cabeçalhos como uma das opções nos campos de genero, escolaridade, area ou função');
+    }
   }
 
 
