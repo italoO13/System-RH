@@ -14,7 +14,7 @@ const Login = () =>{
     try {
       const {user} = await signInWithEmailAndPassword(getAuth(), email,password);
       setLoginSave({email, success:true, id: user.uid})
-      console.log(loginSave)
+
     } catch (e) {
       setLoginSave({...loginSave, success:false});
     }

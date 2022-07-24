@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useContext} from "react";
+import { Link, Navigate } from "react-router-dom";
+import AppContext from "../../Context/AppContext";
 import './NavBar.css';
 
 const NavBar= () => {
+  const {loginSave, setLoginSave} = useContext(AppContext);
+
   return(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <div className="container-fluid mx-3 justify-content-start">
@@ -19,14 +22,18 @@ const NavBar= () => {
               <Link class="nav-link" aria-current="page"  to='/dashboard'>DashBoard</Link>
             </li>
             <li className="nav-item">
-              <Link class="nav-link" aria-current="page"  to='/'>Sair</Link>
-            </li>
-            <li className="nav-item">
               <Link class="nav-link" aria-current="page"  to='/config'>Config</Link>
+            </li>
+            <li className="nav-item" onClick={() => setLoginSave({...loginSave, 'success': false}) }>
+              <Link class="nav-link" aria-current="page"  to='/'>Sair</Link>
             </li>
           </ul>
         </div>
       </div>
+
+      {(loginSave.success === false || loginSave.success ==='') &&
+      <Navigate to="/"/>
+      }
     </nav>
   )
 }

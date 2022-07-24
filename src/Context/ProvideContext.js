@@ -38,6 +38,7 @@ const Provider=({ children }) => {
     getDbAreas,
     nameAreas,
     areas,
+
   }
 
   return(
