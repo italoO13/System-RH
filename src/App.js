@@ -8,6 +8,7 @@ import CreateCount from './Pages/CreateCount/CreateCount';
 import DashBoard from './Pages/DashBoard/Dashboard';
 import EditFuncionario from './Pages/EditFuncionario/EditFuncionario';
 import ConfigCargoArea from './Pages/ConfigCargoArea/ConfigCargoArea';
+import Logout from './Pages/Logout/logout';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/Home' element={<Home/>}/>
           <Route path='/config' element={<ConfigCargoArea/>}/>
           <Route path='/resetpassword' element={<ResetPassword/>}/>
+          <Route path='/logout' element={<Logout />} />
           <Route path='/' element={<Login/>}/>
         </Routes>
       </BrowserRouter>
