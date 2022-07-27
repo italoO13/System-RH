@@ -1,0 +1,62 @@
+.ConfigCargoArea_wrapper{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.ConfigCargoArea_wrapper_nav {
+  background-color: rgb(33, 37, 41);
+  height: calc(100vh - 56px);
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ConfigCargoArea_wrapper_nav h1 {
+  font-size: 2rem;
+  color: #FFFFFF;
+  padding-top: 30px;
+  padding-bottom: 100px;
+}
+
+.ConfigCargoArea_wrapper_nav ul {
+  padding-left: 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ConfigCargoArea_wrapper_nav li {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 150px;
+}
+
+
+.ConfigCargoArea_wrapper_nav li .icon {
+  color: #FFFFFf;
+  margin-right: 15px;
+  font-size: 1.4rem;
+}
+
+.ConfigCargoArea_wrapper_nav a {
+  font-size: 1.2rem;
+  color: #FFFFFf;
+  text-decoration: none;
+}
+
+.ConfigCargoArea_wrapper_content {
+  width: 100%;
+  padding-top: 30px;
+}
+
+.ConfigCargoArea_active .icon {
+  color: rgb(13, 110, 253)!important;
+}

@@ -20,7 +20,7 @@ function App() {
           <Route path='/createcount' element={<CreateCount/>}/>
           <Route path='/novofuncionario' element={<NovoFuncionario/>}/>
           <Route path='/Home' element={<Home/>}/>
-          <Route path='/config' element={<ConfigCargoArea/>}/>
+          <Route path='/config/:step' element={<ConfigCargoArea/>}/>
           <Route path='/resetpassword' element={<ResetPassword/>}/>
           <Route path='/logout' element={<Logout />} />
           <Route path='/' element={<Login/>}/>

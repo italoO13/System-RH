@@ -22,7 +22,7 @@ const NavBar= () => {
               <Link className={`nav-link ${pathname === '/dashboard' && 'active'}`} aria-current="page"  to='/dashboard'>DashBoard</Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${pathname === '/config' && 'active'}`} aria-current="page"  to='/config'>Config</Link>
+              <Link className={`nav-link ${pathname === '/config/area' && 'active'}`} aria-current="page"  to='/config/area'>Config</Link>
             </li>
             <li className="nav-item" >
               <Link className={`nav-link ${pathname === '/logout' && 'active'}`} aria-current="page"  to='/logout'>Sair</Link>
