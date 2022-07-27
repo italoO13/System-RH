@@ -35,7 +35,7 @@ const CreateCount = () =>{
       validatePassword();
       await createUserWithEmailAndPassword(getAuth(), email, password)
       const {user} = await signInWithEmailAndPassword(getAuth(), email,password);
-      await addSubCollection(user.uid)
+      // await addSubCollection(user.uid)
       setMenssage('success')
     }catch(e) {
       setMenssage(e.message)
