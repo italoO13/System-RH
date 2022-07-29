@@ -31,9 +31,9 @@ const NavBar= () => {
         </div>
       </div>
 
-      {(loginSave.success === false || loginSave.success ==='') &&
+      {/* {(loginSave.success === false || loginSave.success ==='') &&
       <Navigate to="/"/>
-      }
+      } */}
     </nav>
   )
 }

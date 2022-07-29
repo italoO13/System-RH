@@ -2,6 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import AppContext from "../../Context/AppContext";
 import useFirebase from "../../Hooks/useFirebase";
 import useCargoFunc from "../../Hooks/useCargoFunc";
+import imgFilter from '../../image/filterFunc.png';
+import './ConfigFunc.css';
 
 const ConfigFunc = () => {
 
@@ -51,29 +53,58 @@ const ConfigFunc = () => {
 
   return (
     <div>
-      <h1>Func</h1>
+      <h1>Funções</h1>
 
       <div>
-          <div>
+          <div className="m-3">
             {nameAreas && nameAreas.map((area, index) => (
-              <button type="button" name={area} key={index} onClick={({target})=>{
+  
+              <button 
+                type="button" 
+                name={area}
+                className={`btn m-1 ${area === filterArea ? 'btn-primary': 'btn-dark'}`}
+                key={index} 
+                onClick={({target})=>{
                 setFilterArea(target.name);
                 setFuncions(returnFunc(areas, target.name, true))
-              }} >{area}</button>
+              }}>
+                {area}
+              </button>
             ))}
           </div>
           <div>
-            <label>
-              Funções
-              <input type="text" value={newAddFunc} onChange={({target})=> setNewAddFunc(target.value)} />
-              <button type="button" onClick={addFunctions}>Add</button>
+  
+            <label className="config_func_wrapper_add">
+              <input 
+               type="text"
+               value={newAddFunc}
+               placeholder="Adicione uma nova Função" 
+               onChange={({target})=> setNewAddFunc(target.value)} />
+              <button type="button" onClick={addFunctions}>
+                <i class="fa-solid fa-plus"></i>
+              </button>
             </label>
+
             {message && <p className="alert alert-danger">{message}</p>}
-            <ul>
+            {!filterArea &&
+            <>
+              <img 
+                src={imgFilter} 
+                className='configFuncImgFilter' 
+                alt="Imagem pedido para selecionar filtro" 
+              />
+              <h4>Selecione qual área deseja visualizar as funções</h4>
+            </>
+
+            }
+
+            <ul className="config_func_wrapper_list mt-3">
               {functions && functions.map((func,index) => (
                 <li key={index}>
                   <span>{func}</span>
-                  <button type="button" name={func} onClick={removeFunctions}>Remove</button>
+                  <button type="button" name={func} onClick={removeFunctions}>
+                    <i className="fa-solid fa-trash"></i>
+                  </button>
                 </li>
               ))}
             </ul>

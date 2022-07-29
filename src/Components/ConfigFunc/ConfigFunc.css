@@ -1,0 +1,59 @@
+.config_func_wrapper_add {
+  margin: 10px;
+}
+
+.config_func_wrapper_add input {
+  padding: 9px 10px 9px 10px;
+  border-radius: 3px;
+  border: 1px solid #CCC;
+  outline: none;
+}
+
+.config_func_wrapper_add button {
+  padding: 9px 10px 9px 10px;
+  margin-left: 3px;
+  background-color: #0d6efd ;
+  border: 1px solid #CCC;
+}
+
+.config_func_wrapper_list {
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.config_func_wrapper_list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  padding: 10px;
+  min-width: 200px;
+  max-width: 700px;
+  background-color: #0d6efd ;
+  color: #FFF;
+  margin-bottom: 7px;
+  border-radius: 5px;
+}
+
+.config_func_wrapper_list li button {
+  background-color: transparent;
+  border: transparent;
+  color: #FFF;
+  transition: all 0.5s;
+}
+
+.config_func_wrapper_list li button:hover {
+  color: rgb(200, 0, 0)
+}
+
+.configFuncImgFilter {
+  width: 300px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+

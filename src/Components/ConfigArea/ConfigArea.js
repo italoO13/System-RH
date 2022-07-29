@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import AppContext from "../../Context/AppContext";
 import useFirebase from "../../Hooks/useFirebase";
 import useCargoFunc from "../../Hooks/useCargoFunc";
+import './ConfigArea.css';
 
 const ConfigArea = () =>{
 
@@ -34,9 +35,11 @@ const ConfigArea = () =>{
     <div>
       <h1>Area</h1>
       <div>
-        <label>
-          Área
-          <input onChange={({target}) => setNewArea(target.value)} value={newArea} />
+        <label className="config_area_wrapper_add">
+          <input 
+            placeholder="Adicione uma nova área"
+            onChange={({target}) => setNewArea(target.value)} value={newArea} 
+            />
           <button onClick={async () => {
             try {
               setNewArea('');
@@ -50,14 +53,18 @@ const ConfigArea = () =>{
               setMessage(e.message)
             }
 
-          }}>Add</button>
+          }}>
+            <i class="fa-solid fa-plus"></i>
+          </button>
         </label>
         {message && <p className="alert alert-danger">{message}</p>}
-        <ul>
+        <ul className="config_area_wrapper_list">
           {nameAreas && nameAreas.map((area, index) => (
             <li key={index}>
               <span>{area}</span>
-              <button type="button" name={area} onClick={deleteArea}>Delete</button>
+              <button type="button" name={area} onClick={deleteArea}>
+                <i className="fa-solid fa-trash"></i>
+              </button>
             </li>
           ))}
         </ul>
