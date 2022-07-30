@@ -8,7 +8,7 @@ const CadastroFuncionario= () => {
   const navigate = useNavigate()
   const {setSearchName} = useContext(AppContext);
   return(
-    <div className="cadastroFuncionario container">
+    <div className="cadastroFuncionario container-fluid">
       <h1 className='cadastroFuncionario-titulo'>Cadastro de Funcionário</h1>
       <div className="row mb-3">
         <div className="col-4">
