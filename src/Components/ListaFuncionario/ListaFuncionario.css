@@ -24,3 +24,7 @@
   color: red;
   font-size: 22px;
 }
+
+.wrapper_table_func {
+  overflow-x: auto;
+}

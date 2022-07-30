@@ -28,7 +28,7 @@ const ListaFuncionario= () => {
 
 
   return(
-    <>
+    <div className="wrapper_table_func"> 
     <table className="table table-striped table-bordered table-hover table-responsive tb-func">
       <thead className="table-secondary">
         <tr>
@@ -141,7 +141,7 @@ const ListaFuncionario= () => {
     Deseja apagar o registro do funcionário ?
   </SweetAlert>
     }
-    </>
+    </div>
   )
 }
 
