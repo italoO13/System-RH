@@ -2,6 +2,7 @@ import React, {useEffect, useContext} from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import AppContext from "../../Context/AppContext";
 import goodBye from '../../image/goodBye.png'
+import './logout.css';
 
 const Logout = () => {
   const {setLoginSave} = useContext(AppContext)
@@ -15,7 +16,7 @@ const Logout = () => {
   }, [])
 
   return (
-    <div>
+    <div className="page_logout">
       <NavBar />
       <h1>Obrigado por utilizar nosso sistema !</h1>
       <img src={goodBye} alt="imagem de pessoa dando tchau" />
