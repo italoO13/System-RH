@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+<h1 align="center">
+     <a href="#" alt="site de despesa"> System RH - Do zero ao Deploy</a>
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">
+    Um MVP de um mini sistema para controle de funcionários completamente funcional.
+</h3>
 
-## Available Scripts
+<h4 align="center">
+	🚧   Em andamento 🚀 🚧
+</h4>
 
-In the project directory, you can run:
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o projeto](#-sobre-o-projeto)
+   * [Funcionalidades](#-funcionalidades)
+   * [Layout](#-layout)
+   * [Tecnologias](#-tecnologias)
+  * [Lições Aprendidas](#-LiçõesAprendidas)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!--te-->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 💻 Sobre o projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Este é um projeto pessoal e teve como objetivo utilizar os conhecimentos que adiquirir até o momento para criar um MVP de um sistema de recursos humanos que fosse possível ser utilizado e gerasse algum valor !
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Funcionalidades
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] Controle de acesso
+- [x] Cadastro de usuários
+- [x] Fluxo para recupera senhas
+- [x] CRUD para cadastro de funcionários
+- [x] Possíbilidade de cadastro de áreas e funções da sua empresa de forma personalizada
+- [x] Dashboard com alguns indicadores de Recursos Humanos
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🎨 Layout
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ### Login
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  <img alt="review layout" src="./imgReadme/Login.png">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ### Home
 
-## Learn More
+  <img alt="review layout" src="./imgReadme/Home.png">
+  
+  ### DashBoard
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  <img alt="review layout" src="./imgReadme/Dash.png">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ### Configurações
 
-### Code Splitting
+  <img alt="review layout" src="./imgReadme/Configuração.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  ### Logout
 
-### Analyzing the Bundle Size
+  <img alt="review layout" src="./imgReadme/Sair.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🛠 Tecnologias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### Advanced Configuration
+-   **React Router Dom**
+-   **Bootstrap**
+-   **ContextAPI**
+-   **Firebase**
+-   **React google Charts**
+-   **Lodash React**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Lições Aprendidas Durante o projeto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-   Criar um template básico no figma para se guiar durante o projeto - Não utilizei acabei muitas vezes perdido no que deveria ser feito.
+-  Definir o escopo da aplicação antes de começar a codar.
+- Antes feito que perfeito !
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Link de Preview do projeto
+
+  <a href="https://crud1-4d41d.web.app/" alt="projeto System RH" >Preview</a>
