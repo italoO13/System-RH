@@ -1,0 +1,25 @@
+.dash_indicadores{
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+}
+
+.dash_indicadores_cards{
+  margin: 20px;
+  border: 1px solid #CCC;
+  padding: 10px 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dash_tratamento_ftdados {
+  border: 1px solid #CCC;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 50%;
+  height: 200px;
+}
+

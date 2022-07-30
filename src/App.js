@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Login from './Pages/Login/login';
+import Login from './Pages/Login/Login';
 import ResetPassword from './Pages/RedefinirConta/ResetPassoword';
 import Home from './Pages/Home/Home';
 import NovoFuncionario from './Pages/NovoFuncionario/NovoFuncionario';
@@ -8,7 +8,7 @@ import CreateCount from './Pages/CreateCount/CreateCount';
 import DashBoard from './Pages/DashBoard/Dashboard';
 import EditFuncionario from './Pages/EditFuncionario/EditFuncionario';
 import ConfigCargoArea from './Pages/ConfigCargoArea/ConfigCargoArea';
-import Logout from './Pages/Logout/logout';
+import Logout from './Pages/Logout/Logout';
 
 function App() {
   return (

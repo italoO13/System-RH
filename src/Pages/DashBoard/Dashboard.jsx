@@ -3,6 +3,7 @@ import AppContext from "../../Context/AppContext";
 import NavBar from "../../Components/NavBar/NavBar";
 import _ from "lodash";
 import { Chart } from "react-google-charts";
+import './Dashboard.css';
 
 const DashBoard= () => {
   const {funcionarios} = useContext(AppContext);
@@ -18,6 +19,14 @@ const DashBoard= () => {
   },[funcionarios]);
 
   const graphGender = () => {
+
+    if(funcionarios.length ===0) {
+      return (
+      <div className="dash_tratamento_ftdados">
+        <p>Sem dados Suficiente</p>
+      </div>)
+    }
+
     const values = _.groupBy(funcionarios, (func) => {
       return func.genero;
     })
@@ -38,6 +47,14 @@ const DashBoard= () => {
   };
 
   const graphSalary = () => {
+
+    if(funcionarios.length ===0) {
+      return (
+      <div className="dash_tratamento_ftdados">
+        <p>Sem dados Suficiente</p>
+      </div>)
+    }
+
     const values = _.groupBy(funcionarios, (func) => {
       return func.area
     })
@@ -77,16 +94,16 @@ const DashBoard= () => {
       .filter((func) => func.dataDesligamento !== '').length;
     const turnover = (totalFuncionario/funcionariosDesligados) *100;
     return(
-      <div className="d-flex justify-content-center">
-        <div>
+      <div className="dash_indicadores d-flex justify-content-around">
+        <div className="dash_indicadores_cards">
           <h1>{totalFuncionario}</h1>
           <p>Funcionários Ativos</p>
         </div>
-        <div>
+        <div className="dash_indicadores_cards">
           <h1>{funcionariosDesligados}</h1>
           <p>Total de Demissões</p>
         </div>
-        <div>
+        <div className="dash_indicadores_cards">
           <h1>{turnover} %</h1>
           <p>Turnover Geral</p>
         </div>
@@ -95,6 +112,14 @@ const DashBoard= () => {
   };
 
   const graphEmployees = () =>{
+
+    if(funcionarios.length ===0) {
+      return (
+      <div className="dash_tratamento_ftdados">
+        <p>Sem dados Suficiente</p>
+      </div>)
+    }
+    
 
    const v = funcionarios.reduce((accTotal,func) => {
 
@@ -116,6 +141,13 @@ const DashBoard= () => {
   };
 
   const graphReasonDimissal = () => {
+
+    if(funcionarios.length ===0) {
+      return (
+      <div className="dash_tratamento_ftdados">
+        <p>Sem dados Suficiente</p>
+      </div>)
+    }
 
     const funcDemitidos = funcionarios
       .filter((func) => func.dataDesligamento !== '' && func.motivoDesligamento !== '');
@@ -146,9 +178,8 @@ const DashBoard= () => {
 
 
   return(
-    <div >
+    <div className="dashboard ">
       <NavBar />
-      <h1>Dashboard</h1>
       {statusRender && indicators()}
       <div className="d-flex">
       {statusRender && graphGender()}

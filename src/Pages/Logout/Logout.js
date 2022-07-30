@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import AppContext from "../../Context/AppContext";
 import goodBye from '../../image/goodBye.png'
-import './logout.css';
+import './Logout.css';
 
 const Logout = () => {
   const {setLoginSave} = useContext(AppContext)
