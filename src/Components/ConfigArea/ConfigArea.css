@@ -40,10 +40,21 @@
 }
 
 .config_area_wrapper_list li button {
+  position: relative;
+  width: 30px;
   background-color: transparent;
   border: transparent;
   color: #FFF;
   transition: all 0.5s;
+}
+
+.config_area_wrapper_list li button::before {
+  background-color: transparent;
+  content: '';
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  height: 100%;
 }
 
 .config_area_wrapper_list li button:hover {
